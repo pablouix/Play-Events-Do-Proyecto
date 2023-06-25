@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumiendo Api</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <script src="./js/scriptnuveoseventos.js"></script>
+    <script src="./js/scriptstadisticas.js"></script>
+</head>
+<body>
+    <nav class="navbar container">
+        <div class="logo">
+          <a href="#" class="">Play Events Do</a>
+        </div>
+    
+    
+        <input type="checkbox" id="toggler">
+    
+        <label for="toggler"><i class="ri-menu-line"></i></label>
+        <div class="menu">
+          <ul class="list">
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="pag/eventos.html">Eventos</a></li>
+            <li><a href="pag/info.html">Info.</a></li>
+          </ul>
+        </div>
+      </nav>
+      <section class="banner">
+        <div class="Banner-Color">
+            <div class="Banner-Titulo">
+                <div>
+                    <h1>Sumérgete en la diversión con los mejores eventos en República Dominicana.</h1>
+                    <button class="whatsapp-btn"></i> Agendar evento hoy!</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+   
+
+    <section class="nuevosEventos">
+      <h1>Nuevos Eventos</h1> 
+      <div id="eventos-lista"></div>
+  
+      <script src="./js/scriptnuveoseventos.js"></script>
+  
+    </section>
+
+    <section class="redes">
+<h1>
+  Disfruta de todos los eventos
+</h1>
+    </section>
+
+  
+    <section class="estadisticas-eventos">
+      <div class="venta-ticket">
+        <div class="number" id="ventas">0</div>
+        <div class="label">ventas totales</div>
+      </div>
+    
+      <div class="venta-ticket">
+        <div class="number" id="pedidos">0</div>
+        <div class="label">pedidos</div>
+      </div>
+    
+      <div class="venta-ticket">
+        <div class="number" id="tickets">0</div>
+        <div class="label">tickets vendidos</div>
+      </div>
+    </section>
+  
+   
+    <footer class="footer-final">
+        <span>Copyright © 2023 by Play Events | Privacy Policy </span>
+    </footer>
+</body>
+</html>

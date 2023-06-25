@@ -1,0 +1,363 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #f6f9ff;
+    color: #151515;
+ 
+}
+
+section{
+    min-height: 85vh;
+}
+.nuevosEventos
+{
+    min-height: 30vh; 
+}
+h1{
+    font-size: 18px;
+   text-align: center;
+}
+
+.container{
+    max-width: auto; 
+    margin: 0 auto; 
+    padding: 50px;  
+}
+
+.navbar{
+    display: flex;
+    position: relative;
+    flex-wrap: wrap; 
+    align-items: center; 
+    justify-content: space-between; 
+    background-color: #fff;
+    padding-block: 30px; 
+}
+
+.navbar a{
+    text-decoration: none;
+    color: inherit; 
+}
+
+.logo{
+    margin-right: 50px;
+    font-size: 20px;
+    justify-content: center;
+}
+.logo svg
+{
+ margin: -5px;
+}
+
+.logo a
+{
+    font-family: 'Poppins', sans-serif;
+}
+
+.list{
+    list-style: none;
+    display: flex;
+    gap: 25px; 
+    font-size: 16px;
+}
+
+#toggler,
+.navbar label{
+    display: none;
+}
+
+
+h1 {
+    margin: 10px;
+}
+
+ul {
+    font-size: 18px;
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    background-color: white;
+    padding: 3px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 10px;
+    position: relative;
+   
+}
+
+li button {
+    font-size: 16px;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background-color: #007bff;
+    color: white;
+    padding: 4px 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+li button:hover {
+    background-color: #0056b3;
+}
+
+li[style="background-color: rgb(212, 212, 212);"] {
+    background-color: rgb(212, 212, 212);
+    color: white;
+}
+
+
+
+.hidden {
+    display: none;
+}
+
+
+
+.footer-final {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    background-color: white;
+     font-size: 16px;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    background-color: white;
+}
+
+
+/*banner*/
+.banner{
+    min-height: 10vh;
+
+}
+
+.Banner-Color {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    animation: banner-animation 30s infinite;
+    background-color: rgba(0, 0, 0, 0.6);
+    background-blend-mode: darken; 
+  }
+
+@keyframes banner-animation {
+    0% {  background-image: url('https://images.unsplash.com/photo-1516873240891-4bf014598ab4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');    }
+    33.33% { background-image: url('https://images.unsplash.com/photo-1502136969935-8d8eef54d77b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80'); }
+    66.66% { background-image: url('https://images.unsplash.com/photo-1563299796-b729d0af54a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1025&q=80'); }
+    100% { background-image: url('https://images.unsplash.com/photo-1574724713425-fee7e2eacf84?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1126&q=80'); }
+}
+
+
+
+
+.Banner-Titulo { 
+    display: flex;
+    align-items: center;
+    background-color: rgba(34, 69, 40, 0);
+    border-radius: 0;
+    padding-top: 160px;
+    padding-bottom: 160px;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+.banner h1
+{
+    color: #fff;
+    font-size: 20px;
+}
+  
+
+.Banner-Titulo > div {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    text-align: start;
+}
+
+.whatsapp-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem; 
+    padding: 0.5rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    font-size: 18px;
+}
+
+.whatsapp-btn:hover {
+    background-color: #0056b3;
+}
+
+.whatsapp-btn i {
+    margin-right: 0.5rem;
+    font-size: 22px;
+}
+
+/*nuevos eventos*/
+#eventos-lista {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.card p {
+    margin: 5px 0;
+    font-size: 18px; 
+}
+
+.card .buy-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px; 
+    font-size: 16px;
+}
+
+.card .buy-button:hover {
+    background-color: #0056b3;
+}
+
+
+/* venta ticket*/
+.estadisticas-eventos
+{
+    min-height: 10vh;
+    text-align: center;
+}
+.venta-ticket {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.number {
+    font-size: 25px;
+    font-weight: bold;
+    color: #333;
+}
+
+.label {
+    font-size: 20px;
+    color: #777;
+}
+
+.redes
+{
+    background-color: #293f54;
+    min-height: 5vh;
+}
+
+.redes h1
+{
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+/*info*/
+
+.info {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.info h1 {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.info h2 {
+    font-size: 18px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.info p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+@media screen and 
+(max-width: 900px){
+    .container{
+   
+        padding: 20px;  
+    }
+    .menu{
+        width: 200%;
+        max-height: 0; 
+        overflow: hidden;
+    }
+
+    .list{
+        flex-direction: column; 
+        align-items: center;
+        padding: 20px;
+    }
+
+    .navbar label{
+        display: inline-flex; 
+        align-items: center;
+        cursor: pointer;
+    }
+
+    #toggler:checked ~ .menu{
+        max-height: 100%;
+    }
+
+
+    .Banner-Titulo > div {
+   
+        align-items: center;
+        text-align: center;
+    }
+    
+    
+}

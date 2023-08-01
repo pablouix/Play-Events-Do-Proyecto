@@ -21,6 +21,21 @@
             <th>
                 @Html.DisplayNameFor(model => model.fecha)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hora)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lugar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Organizador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EsPublico)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -35,6 +50,21 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hora)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lugar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Organizador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EsPublico)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |

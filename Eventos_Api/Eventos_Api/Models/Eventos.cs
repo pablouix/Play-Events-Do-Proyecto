@@ -11,6 +11,10 @@ namespace Eventos_Api.Models
         public string nombre { get; set; }
         public string fecha { get; set; }
         public string hora { get; set; }
+        public string Descripcion { get; set; } 
+        public string Lugar { get; set; }
+        public string Organizador { get; set; }
+        public bool EsPublico { get; set; } // público o requiere invitación
 
         [ForeignKey("idEvento")]
         public List<ZonasDetalles> ZonaDetalles { get; set; } = new List<ZonasDetalles>();

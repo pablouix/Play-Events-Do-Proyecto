@@ -25,10 +25,10 @@ namespace Eventos_Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Eventos>>> GetEventos()
         {
-          if (_context.Eventos == null)
-          {
-              return NotFound();
-          }
+            if (_context.Eventos == null)
+            {
+                return NotFound();
+            }
             return await _context.Eventos.Include(e => e.ZonaDetalles).ToListAsync();
         }
 
@@ -36,10 +36,10 @@ namespace Eventos_Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Eventos>> GetEventos(int id)
         {
-          if (_context.Eventos == null)
-          {
-              return NotFound();
-          }
+            if (_context.Eventos == null)
+            {
+                return NotFound();
+            }
             var eventos = await _context.Eventos.Include(e => e.ZonaDetalles).FirstOrDefaultAsync(e => e.id == id);
 
             if (eventos == null)

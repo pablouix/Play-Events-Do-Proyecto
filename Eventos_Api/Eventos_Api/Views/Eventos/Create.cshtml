@@ -28,6 +28,31 @@
                 <span asp-validation-for="fecha" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="hora" class="control-label"></label>
+                <input asp-for="hora" class="form-control" />
+                <span asp-validation-for="hora" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <input asp-for="Descripcion" class="form-control" />
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lugar" class="control-label"></label>
+                <input asp-for="Lugar" class="form-control" />
+                <span asp-validation-for="Lugar" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Organizador" class="control-label"></label>
+                <input asp-for="Organizador" class="form-control" />
+                <span asp-validation-for="Organizador" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="EsPublico" /> @Html.DisplayNameFor(model => model.EsPublico)
+                </label>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>

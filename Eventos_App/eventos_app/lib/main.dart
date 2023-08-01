@@ -1,6 +1,7 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:eventos_app/pages/eventospage.dart';
-import 'package:eventos_app/pages/infopage.dart';
+import 'package:http/http.dart' as http;
+import 'package:eventos_app/menu.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,91 +17,99 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Play Events Do'),
+      home: const LoginPage(),
       routes: {
-        '/eventos': (context) => const EventosPage(),
-        '/info': (context) => const InfoPage(),
+        '/menu': (context) => const MenuPage(),
       },
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
-  final String title;
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+  Future<bool> _authenticateUser(String username, String password) async {
+    final url = Uri.parse('http://eventos.somee.com/api/Usuarios');
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final List<dynamic> users = jsonDecode(response.body);
+
+      for (final user in users) {
+        if (user['nombre'] == username && user['contrasena'] == password) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: const Text('Play Events Do'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const SizedBox(height: 20.0),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/eventos');
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Colors.blue,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextField(
+                controller: _usernameController,
+                decoration: const InputDecoration(
+                  labelText: 'Username',
                 ),
-                padding: EdgeInsets.all(40.0),
               ),
-              child: Column(
-                children: [
-                  const Icon(
-                    Icons.event,
-                    size: 40,
-                    color: Colors.white,
-                  ),
-                  const SizedBox(height: 0, width: 300.0,),
-                  const Text(
-                    'Eventos',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20,),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/info');
-              },
-              style: ElevatedButton.styleFrom(
-                primary: Colors.blue,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
+              TextField(
+                controller: _passwordController,
+                decoration: const InputDecoration(
+                  labelText: 'Password',
                 ),
-                padding: EdgeInsets.all(40.0),
+                obscureText: true,
               ),
-              child: Column(
-                children: [
-                  const Icon(
-                    Icons.info,
-                    size: 40,
-                    color: Colors.white,
-                  ),
-                  const SizedBox(height: 10, width: 300,),
-                  const Text(
-                    'Info.',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
+              const SizedBox(height: 20.0),
+              ElevatedButton(
+                onPressed: () async {
+                  String username = _usernameController.text;
+                  String password = _passwordController.text;
+
+                  bool isAuthenticated = await _authenticateUser(username, password);
+
+                  if (isAuthenticated) {
+                    Navigator.pushNamed(context, '/menu');
+                  } else {
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: const Text('Error de autenticación'),
+                        content: const Text('Credenciales inválidas.'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text('Aceptar'),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                },
+                child: const Text('Iniciar sesión'),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

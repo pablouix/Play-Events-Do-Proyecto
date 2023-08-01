@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.BorderLayout;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -14,11 +13,12 @@ import pag.AddEventosPage;
 import pag.AddZonaDetallePage;
 import pag.RemZonaDetallePage;
 import pag.RemEventosPage;
+import pag.EstadisticasPage;
 
 public class EventosPage {
     private static JTextArea eventosTextArea;
 
-    public static void main(String[] args) {
+    public EventosPage(){
         JFrame ventana = new JFrame("Play Events Do Adm");
         ventana.setSize(600, 400);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,6 +34,7 @@ public class EventosPage {
         JMenuBar menuBar = new JMenuBar();
         JMenu agregarMenu = new JMenu("Agregar");
         JMenu borrarMenu = new JMenu("Borrar");
+        JMenu estadisticasMenu = new JMenu("Estadísticas");
 
         JMenuItem agregarEventoItem = new JMenuItem("Agregar Evento");
         agregarEventoItem.addActionListener(e -> abrirVentana("Agregar Evento"));
@@ -51,12 +52,17 @@ public class EventosPage {
         borrarZonaDetalleItem.addActionListener(e -> abrirVentana("Borrar Zona Detalle"));
         borrarMenu.add(borrarZonaDetalleItem);
 
+        JMenuItem estadisticasItem = new JMenuItem("Estadísticas de Eventos");
+        estadisticasItem.addActionListener(e -> abrirVentana("Estadísticas"));
+        estadisticasMenu.add(estadisticasItem);
+
         JMenuItem actualizarListaItem = new JMenuItem("Actualizar");
         actualizarListaItem.addActionListener(e -> actualizarListaEventos());
         menuBar.add(actualizarListaItem);
 
         menuBar.add(agregarMenu);
         menuBar.add(borrarMenu);
+        menuBar.add(estadisticasMenu);
         ventana.setJMenuBar(menuBar);
 
         actualizarListaEventos();
@@ -85,6 +91,10 @@ public class EventosPage {
                 int eventoId = eventoObj.getInt("id");
                 eventoData.append("Evento ID: ").append(eventoId).append("\n");
                 eventoData.append("Nombre: ").append(eventoObj.getString("nombre")).append("\n");
+                eventoData.append("Descripción: ").append(eventoObj.getString("descripcion")).append("\n");
+                eventoData.append("Lugar: ").append(eventoObj.getString("lugar")).append("\n");
+                eventoData.append("Organizador: ").append(eventoObj.getString("organizador")).append("\n");
+                eventoData.append("Es Público: ").append(eventoObj.getBoolean("esPublico")).append("\n");
                 eventoData.append("Fecha: ").append(eventoObj.getString("fecha")).append("\n");
                 eventoData.append("Hora: ").append(eventoObj.getString("hora")).append("\n\n");
 
@@ -96,7 +106,10 @@ public class EventosPage {
                     eventoData.append("  - Zona Detalle ID: ").append(zonaDetalleId).append("\n");
                     eventoData.append("    Zona: ").append(zonaDetalleObj.getString("nombre")).append("\n");
                     eventoData.append("    Capacidad: ").append(zonaDetalleObj.getInt("capacidad")).append(" Personas\n");
-                    eventoData.append("    Precio: $").append(zonaDetalleObj.getDouble("precio")).append("\n\n");
+                    eventoData.append("    Precio: $").append(zonaDetalleObj.getDouble("precio")).append("\n");
+                    eventoData.append("    Compradas: ").append(zonaDetalleObj.getInt("compradas")).append("\n");
+                    eventoData.append("    Disponibles: ").append(zonaDetalleObj.getInt("disponibles")).append("\n");
+                    eventoData.append("    Total Comprado: $").append(zonaDetalleObj.getDouble("totalComprado")).append("\n\n");
                 }
 
                 eventosTextArea.append(eventoData.toString());
@@ -112,24 +125,34 @@ public class EventosPage {
         ventana.setLocationRelativeTo(null);
 
         JPanel panel = new JPanel();
-        panel.setPreferredSize(new Dimension(400, 250));
 
+        Dimension tamanoPanel;
         switch (titulo) {
             case "Agregar Evento":
+                tamanoPanel = new Dimension(400, 440);
                 panel.add(new AddEventosPage());
                 break;
             case "Agregar Detalle":
+                tamanoPanel = new Dimension(400, 500);
                 panel.add(new AddZonaDetallePage());
                 break;
             case "Borrar Evento":
+                tamanoPanel = new Dimension(400, 100);
                 panel.add(new RemEventosPage());
                 break;
             case "Borrar Zona Detalle":
+                tamanoPanel = new Dimension(400, 100);
                 panel.add(new RemZonaDetallePage());
                 break;
+            case "Estadísticas":
+                tamanoPanel = new Dimension(400, 200);
+                panel.add(new EstadisticasPage());
+                break;
             default:
+                tamanoPanel = new Dimension(400, 100);
                 break;
         }
+        panel.setPreferredSize(tamanoPanel);
 
         ventana.getContentPane().add(panel);
         ventana.pack();
